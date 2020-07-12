@@ -41,14 +41,14 @@ https://kotlinlang.org/docs/reference/coding-conventions.html
 - Все аргументы конструктора пишутся на новой строчке:
 ```
 class MyClass(
-		private val field1: Type1,
-		private val field2: Type2
+	private val field1: Type1,
+	private val field2: Type2
 )
 ```
 Исключение: можно не писать на новой строчке, если все аргументы используются только в конструкторе.
 ```
 class Descendant(field1: Type1, field2: Type2): Parent(field2) {
-		val field3 = field1.toField3()
+	val field3 = field1.toField3()
 }
 ```
 
@@ -62,86 +62,87 @@ class Descendant(val field2: Type2, field1: Type1) : Parent(field1)
 Порядок аннотаций: самые верхние - самые значимые.
 ```
 class Foo {
-		@Annotation private val field: Type
+	@Annotation private val field: Type
 
-		@ImportantAnnotation1
-		@Annotation2 
-		private val field: Type
+	@ImportantAnnotation1
+	@Annotation2 
+	private val field: Type
 }
 ```
 
 - Если тело функции не умещается в одну строчку, то оборачивается в фигурные скобки.
-  ```
+```
  fun foo(num: Int): Type {
-		return veryVeryLongClassObject.getVeryVeryLongNamedField() * num + 
-				pow(10, -num);
+	return veryVeryLongClassObject.getVeryVeryLongNamedField() * num + 
+		pow(10, -num);
    }
 ```
 
 - Булевы выражения в коротком теле функции оборачивается в круглых скобках.
- ```
+```
 fun Int.isEven() = (this % 2 == 0)
 ```
 
 - Последовательные множественные вызовы пишутся на новых строчках.
 ```
 MyBuilder()
-	 	.setField1(1)
-		 .setField2(2)
-		 .build()
+	.setField1(1)
+	.setField2(2)
+	.build()
 
-	 sinsStore.flow
-		.map {}
-		.onEach {}
-		.launch()
+sinsStore.flow
+	.map {}
+	.onEach {}
+	.launch()
 ```
 
 Но допускается в одну строчку, если вызов из не более двух методов.
 ```
-	MyBuilder().setField1(1).build()
-	sinsStore.flow.map{ }.first{ }
+MyBuilder().setField1(1).build()
+sinsStore.flow.map{ }.first{ }
 ```
 
 - Если if..else не умещается в одну строку, то пишется полная версия.
 ```
-	val x = if (something) {
-		veryVeryLongFunction1()
-	} else {
-		veryVeryLongFunction2()
-   }
+val x = if (something) {
+	veryVeryLongFunction1()
+} else {
+	veryVeryLongFunction2()
+}
 ```
 
 - Если тело if..else не умещается в одну строку, то return пишется в самих блоках.
 ```
 if (something) {
-		return veryVeryLongFunction1()
+	return veryVeryLongFunction1()
 } else {
-		veryVeryLongFunction2()
-		return veryVeryLongFunction3()
+	veryVeryLongFunction2()
+	return veryVeryLongFunction3()
 }
 ```
 
 - Не использовать it, если он имеет большую видимость.
 ```
 store.getSomething()?.let { something ->
-		// some code
-		// some code
-		return@let something + 1
-	 }
+	// some code
+	// some code
+	return@let something + 1
+}
 ```
+
 - Отдавать приоритет единообразию форматирования кода, даже если это противоречит одному из пунктов.
 Пример:
 ```
 view.background = when(position) {
-            1 -> 
-				context.getDrawable(R.drawable.d1)
-            2 -> 
-				context.getDrawable(R.drawable.d2)
-            MAX_POSITION ->
-				context.getDrawable(R.drawable.long_drawable_max_position)
-            else -> 
-				context.getDrawable(R.drawable.delse)
-        }
+	FIRST_POSITION -> 
+		context.getDrawable(R.drawable.d1)
+	SECOND_POSITION -> 
+		context.getDrawable(R.drawable.d2)
+	LAST_POSITION ->
+		context.getDrawable(R.drawable.long_drawable_last_position)
+	else -> 
+		context.getDrawable(R.drawable.else_drawable)
+}
 ```
 Перенос в кейсах 1,2, else выполнен только для единообразия.
 
@@ -177,11 +178,11 @@ view.background = when(position) {
 - Всегда обрабатывать конкретные исключения, а не сразу Exception.
 ```
 try {
-		// some code
+	// some code
 } catch(npex: NullPointerException) { 
-		// some code
+	// some code
 } catch(ioex: IOException) {
-		// some code
+	// some code
 }
 ```
 
