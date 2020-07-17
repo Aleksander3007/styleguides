@@ -48,9 +48,9 @@ class MyClass(
     private val field2: Type2
 )
 ```
-Исключение: можно не писать на новой строчке, если все аргументы используются только в конструкторе.
+Исключение: если всего один аргумент и он используется только в конструкторе, то пишется в одну строчку, при условии что умещается.
 ```
-class Descendant(field1: Type1, field2: Type2): Parent(field2) {
+class Descendant(field1: Type1): Parent(field2) {
     val field3 = field1.toField3()
 }
 ```
